@@ -1,0 +1,109 @@
+% Walter Wißdorf, Minimal PGF Plots exame
+
+% Document Header / Configuration -------------------------------------------------------------------------------------
+\documentclass[a4paper,titlepage,DIV11,11pt,BCOR2.5cm,headinclude,english,openany,pdftex]{scrbook}
+
+% encoding, babel
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+\usepackage{babelbib} 
+
+% Images / floats
+
+
+\usepackage{xspace}
+\usepackage[final]{graphicx}
+\usepackage{units}
+
+%"dynamic" graphics packages section................
+%tikz configuration
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{gnuplottex} %plotting of analytical functions with gnuplot
+\usepackage{pgfplots} %tikz based plotting package
+\usepackage{calc} %for length calculations
+% ..................................................
+
+% Change font styles
+\usepackage{fourier}
+\usepackage{sectsty}
+\allsectionsfont{\fontfamily{phv}\selectfont} 
+\tolerance=300
+
+
+% new commands / macros
+\newcommand{\mobUnit}{$10^{-4} \mathrm{m}^2 \mathrm{V}^{-1} \mathrm{s}^{-1}$} %used ion mobility unit
+\newcommand{\inMobUnits}[1]{\unit[#1]{$\cdot$\mobUnit}} %macro for mobility unit with value
+
+
+% ----- define some standard colors with systematic names for graphics in the document -------
+\definecolor{cffffff}{RGB}{255,255,255}
+\definecolor{caaeeff}{RGB}{170,238,255}
+\definecolor{c0080cc}{RGB}{0,128,204}
+\definecolor{cl1_dark}{RGB}{253,103,17} 	%dark oragne
+\definecolor{cl1_light}{RGB}{253,170,115} 	%light orange
+\definecolor{cl2_dark}{RGB}{32,103,170} 	%dark blue
+\definecolor{cl2_light}{RGB}{203,227,247} 	%light blue
+\definecolor{cl3_dark}{RGB}{253,26,18} 	%dark red
+\definecolor{cl3_light}{RGB}{254,128,124} 	%light red
+\definecolor{cl4_dark}{RGB}{29,121,1} 	%dark green
+\definecolor{cl4_light}{RGB}{156,254,139} 	%light green
+
+
+% ----- define some standard lengths with systematic names for graphics in the document -------
+\newlength{\singleplotwidth}
+\setlength{\singleplotwidth}{\columnwidth *\real{0.7}}
+\newlength{\singleplotheight}
+\setlength{\singleplotheight}{\singleplotwidth *\real{0.8}}
+
+\newlength{\largesingleplotwidth}
+\setlength{\largesingleplotwidth}{\columnwidth *\real{1.0}}
+\newlength{\largesingleplotheight}
+\setlength{\largesingleplotheight}{\largesingleplotwidth *\real{0.70}}
+
+
+\newlength{\doubleplotwidth}
+\setlength{\doubleplotwidth}{\columnwidth *\real{0.6}}
+\newlength{\doubleplotheight}
+\setlength{\doubleplotheight}{\doubleplotwidth *\real{0.9}}
+
+
+
+
+
+
+%------------------------------------------ DOC START ------------------------
+\begin{document}
+
+
+% ----- now the main part / main text
+
+\begin{figure}[!tb]
+   \begin{center}
+   \input{introduction_1d_shapeFunctions.tex}
+   \caption{Example of analytical one dimensional shape function plots (requires gnuplot)}
+   \label{fig:1d-shape-functions}
+   \end{center}
+\end{figure}
+
+% Figure: Ion migration (IMS Pot): Simion simulated ion current, comparison of turbulent and laminar results
+\begin{figure}[!tb]
+   \begin{center}
+   \input{ionMigration_simulation_simion_turbulentLaminar.tex}
+   \caption{\emph{SIMION simulation results:} Effects of the turbulence model on the simulated ion current on the receiver electrode. The general shape of the simulated ion current response on the deflection voltage without turbulence modeling ("laminar") and with $k-\epsilon$ turbulence model ("turbulent") is similar but with turbulence modeling the effect of the gas flow is significantly more pronounced.}
+   \label{fig:ionMigSim-simion-turbulent-laminar}
+   \end{center}
+\end{figure}
+
+% Figure: Ion migration (IMS Pot): Simion simulated ion current, comparison with experimental result
+\begin{figure}[!tb]
+   \begin{center}
+   \input{ionMigration_simulation_simion_velocity.tex}
+   \caption{\emph{SIMION simulation results:} Simulated ion current on the receiver electrode for different bulk gas flow velocities in comparison to the experimentally determined ion current. The masses of the simulated ions was uniformly distributed between \unit[$19-350$]{Da} (estimated \inMobUnits{$K_0=3.56-1.04 $})}
+   \label{fig:ionMigSim-simion-velocity}
+   \end{center}
+\end{figure}
+
+
+\end{document}
+%----------------------------------------------------------------------------

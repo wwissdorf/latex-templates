@@ -1,0 +1,195 @@
+\documentclass[a4paper,titlepage,DIV11,11pt,BCOR2.5cm,headinclude,ngerman,openany,pdftex]{scrbook} 
+%Used document class: book with koma script
+%ngerman= new german orthography
+%openany= no empty pages at chapter begin (chapters could begin on left and right pages)
+
+\usepackage[utf8]{inputenc} %input encoding: UTF8 (with every modern LaTeX Editor UTF8 encoding should work)
+%\usepackage[latin1]{inputenc}  % under windows some editors produce source files with latin1 encoding
+
+%language options: 
+\usepackage[ngerman]{babel} %use new german language for labels
+\usepackage{babelbib}  %mutlilingual bibliography
+
+%Images / floats: 
+\usepackage[final]{graphicx} %handling of graphics
+\usepackage{rotating} %rotation of graphics / sideways figures
+\usepackage[bf]{caption} %changes style of figure / floating object captions, bold figure number
+\usepackage{subcaption} %allows the composition of figures out of subfigures (additional subcaptions in a figure)
+
+%change font styles
+\usepackage{fourier} %fourier font
+\usepackage{sectsty} %allows to change the font of section headings
+\allsectionsfont{\fontfamily{phv}\selectfont} %select helvetica for the section headings
+
+% \usepackage[doublespacing]{setspace} %double line spacing
+\usepackage{tabulary} %additional table options (e.g. linebreaks in table cells)
+
+%AMS fonts for mathematics: 
+\usepackage{amsmath} %ams base package ()
+\usepackage{amssymb} %additional mathematical symbols
+\usepackage{amsfonts} %addtional fonts, even more addtional symbols
+
+%units:
+\usepackage{siunitx} %symbolic names for SI units
+\usepackage{units} %general support for units 
+
+\usepackage[version=3]{mhchem} %chemists best friend: support for chemical formulas
+
+%% define a "reaction" environment (copied from the mhchem documentation) with its own numbering: 
+\makeatletter \newcounter{reaction} 
+%%% >> for article << 
+%\renewcommand\thereaction{C\,\arabic{reaction}} 
+%%% << for article <<
+%%% >> for report and book >> 
+\renewcommand\thereaction{R\,\thechapter.\arabic{reaction}} 
+\@addtoreset{reaction}{chapter} 
+%%% << for report and book << 
+\newcommand\reactiontag{\refstepcounter{reaction}\tag{\thereaction}} 
+\newcommand\reaction@[2][]{\begin{equation}\ce{#2}%
+  \ifx\@empty#1\@empty\else\label{#1}\fi%
+  \reactiontag\end{equation}} 
+\newcommand\reaction@nonumber[1]{\begin{equation*}\ce{#1}%
+  \end{equation*}} 
+\newcommand\reaction{\@ifstar{\reaction@nonumber}{\reaction@}} 
+\makeatother
+%\newcommand\reactione[1]{\cee{#1}\reactiontag} 
+\newcommand\reactione[2][]{\cee{#2}%
+  \ifx\@empty#1\@empty\else\label{#1}\fi%
+  \reactiontag} 
+
+\usepackage{varioref} %nice references (optional references with page number)
+%\usepackage{listings} %nice typesetting of source code listings
+%\usepackage{makeidx} %generation of a topical index (sachregister)
+
+%Generation of a list of abbreviations (Abkürzungsverzeichnis):
+%\usepackage{nomencl}
+%  \let\abbrev\nomenclature
+%  \renewcommand{\nomname}{Abkürzungsverzeichnis}
+%  \setlength{\nomlabelwidth}{.25\hsize}
+%  \renewcommand{\nomlabel}[1]{#1 \dotfill}
+%  \setlength{\nomitemsep}{-\parsep}
+%  \makeglossary
+
+%output configuration of the pdftex package / configuration of the generated pdf document: 
+ \usepackage[pdftex,
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,
+    citecolor=cyan,
+    pdftitle={an example document},
+    pdfauthor={an example author},
+    pdfsubject={},
+    pdfkeywords={},
+    bookmarks, bookmarksnumbered=true]{hyperref}
+
+
+
+\setcounter{secnumdepth}{3} %set deepness of numbered sections
+
+
+%new commands / macros: 
+%upright Greek letters (example below: upright "mu") (got from the Springer press latex sample document)
+\newcommand{\euler}[1]{{\usefont{U}{eur}{m}{n}#1}}
+\newcommand{\eulerbold}[1]{{\usefont{U}{eur}{b}{n}#1}}
+\newcommand{\umu}{\mbox{\euler{\char22}}}
+\newcommand{\umub}{\mbox{\eulerbold{\char22}}}
+
+\newcommand{\degC}{$^\circ$C} %degrees celsius
+
+
+
+%------------------------------------------ DOC START ------------------------
+\begin{document}
+
+% ---TITELSEITE---
+\begin{titlepage}
+
+\begin{center}
+{\Large \bfseries Bergische Universität Wuppertal}
+
+\vspace{1,0cm}
+\sffamily
+{\LARGE \bfseries a Thesis}\\
+\vspace{1,5cm}
+{\Huge  \fontfamily{phv}\selectfont  a cool fancy title}\\
+\vspace{2,0cm}
+{\LARGE \bfseries  a cool fancy subtile}\\
+\vspace{4,0cm}
+\small
+ausgeführt am Fachbereich C der\\
+Bergischen Universität Wuppertal\\
+\vspace{1,0cm}
+unter der Anleitung von Prof. Dr. Thorsten Benter\\
+\vspace{,5cm}
+durch\\
+\vspace{,2cm}
+The Author \\
+Mat.Nr.: XXXXXX\\
+\vspace{,5cm}
+from - until\\
+\end{center}
+ 
+\end{titlepage}
+
+%manuell leere Seite erzwingen
+\mbox{} \thispagestyle{empty} \newpage
+
+%--- TITELSEITE ENDE ---
+
+\pagenumbering{roman}
+
+% ---ZUSAMMENFASSUNG ---
+%\section*{Zusammenfassung}
+%Hier kommt die Zusammenfassung hin (wenn es eine gibt)
+
+% ---DANKSAGUNG---
+\section*{Danksagung}
+Ich danke allen die ich danken möchte
+
+% ---Erklärung---
+\chapter*{Erklärung}
+"`Ich versichere, daß ich die von mir vorgelegte Arbeit selbständig angefertigt und andere als die angegebenen Hilfsmittel nicht benutzt sowie jede wörtlich oder inhaltlich übernommene Stelle kenntlich gemacht habe."' \\[14cm]
+
+%TODO: hardcode the finishing date here
+\today \hspace{5.3cm} The Author 
+
+% --- TABLE OF CONTENTS ---
+\tableofcontents
+
+\newpage
+\pagenumbering{arabic}
+\pagestyle{headings}
+
+% ----- BEGINN HAUPTTEIL -----
+\include{thesis_main} %Hauptteil / Fließtext importieren
+
+% ----- ANHANG -----
+%\chapter{Anhang}
+
+%% -- abkürzungen --
+%\include{masterThesisAbbrev}
+%\printglossary
+%\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+
+%%  -- index --
+%\renewcommand{\indexname}{Sachregister} 
+%\printindex
+%\addcontentsline{toc}{chapter}{Sachregister}
+
+% -- list of tables --
+%\listoftables
+
+% -- list of figures --
+\listoffigures
+
+%% -- literaturverzeichnis --
+\clearpage
+\phantomsection 
+\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+%\bibliographystyle{ieeetr} 
+\bibliographystyle{unsrt} 
+%\bibliography{library.bib} %literaturdatenbank wählen
+
+
+\end{document}
+%----------------------------------------------------------------------------

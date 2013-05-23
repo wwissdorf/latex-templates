@@ -1,0 +1,47 @@
+%plot velocity / mobility comparision
+
+\begin{tikzpicture}[scale=1]
+	\tikzstyle{line} = [line width=1.2pt, mark options=solid]
+	\tikzset{every mark/.append style={scale=1.2}}
+
+	\begin{axis}[
+        ymin=0,ymax=1.0, 
+        %xmin=0,xmax=20,
+        xlabel=deflection voltage (\unit{V}),
+        ylabel=relative ion current (arbitrary units),
+        width=\largesingleplotwidth,
+        height=\largesingleplotheight,
+        legend style={
+            %area legend,
+            at={(0.5,-0.19)},
+            anchor=north,
+            legend columns=2,
+            cells={anchor=west}
+            } 
+        ]
+
+
+    \addplot[cl1_dark,mark=o,line]               table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_05_001.csv}; 
+    \addplot[cl1_dark,mark=o,line, dashed]       table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_001.csv}; 
+    \addplot[cl2_dark,mark=diamond,line]         table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_05_002.csv}; 
+    \addplot[cl2_dark,mark=diamond,line, dashed] table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_002.csv}; 
+    \addplot[cl3_dark,mark=asterisk,line]        table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_05_003.csv}; 
+    \addplot[cl3_dark,mark=asterisk,line,dashed] table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_003.csv}; 
+    \addplot[cl4_dark,mark=asterisk,line]        table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_05_004.csv}; 
+    \addplot[cl4_dark,mark=asterisk,line,dashed] table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_004.csv}; 
+
+
+    %\addplot[cl2_dark,mark=asterisk,line] table[col sep=comma,x index=0,y index=1] {data/deflectVari_negCorona-posDeflect_1-1SLM.csv};
+        
+    \legend{
+        {\unit[0.45]{m/s}, laminar},
+        {\unit[0.45]{m/s}, turbulent},
+        {\unit[0.65]{m/s}, laminar},
+        {\unit[0.65]{m/s}, turbulent},        
+        {\unit[0.85]{m/s}, laminar},
+        {\unit[0.85]{m/s}, turbulent},
+        {\unit[1.35]{m/s}, laminar},
+        {\unit[1.35]{m/s}, turbulent},
+    };
+    \end{axis}
+\end{tikzpicture}

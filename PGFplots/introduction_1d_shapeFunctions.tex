@@ -1,0 +1,32 @@
+\begin{tikzpicture}[domain=0:1,x=9cm,y=3.5cm,scale=1]
+	\tikzset{>=stealth}
+	\tikzstyle{line} = [line width=1.4pt]
+	\tikzstyle{thinline} = [line width=0.6pt]
+
+	%plots....
+    \draw[line,color=cl1_light] plot[id=phi1,samples=100] function{(1-x)*(1-2*x)};
+    \draw[line,color=cl1_light] (0.1,0.72) node[below] {$\phi_1$};
+
+    \draw[line,color=cl2_dark,dashed] plot[id=phi2,samples=100] function{4*x*(1-x)};
+    \draw[line,color=cl2_dark] (0.4,0.96) node[above] {$\phi_2$};
+        
+    \draw[line,color=cl1_dark,densely dotted] plot[id=phi3,samples=100] function{x*(2*x-1)};
+	\draw[line,color=cl1_dark] (0.7,0.28) node[below] {$\phi_3$};
+
+	%baseline and node positions....        
+    \draw[line,->] (-0.04,0) -- (1.04,0) node[right] {$x$};
+    \draw[thinline,-] (0,0) -- (0,1) node[above] {$N_1$};
+    \draw[thinline,-] (0.5,0) -- (0.5,1) node[above] {$N_2$};
+    \draw[thinline,-] (1,0) -- (1,1) node[above] {$N_3$};
+
+	%baseline annotations....
+	\draw (0,1pt) -- (0,-3pt) node[anchor=north] {$0$};
+    \draw (1,1pt) -- (1,-3pt) node[anchor=north] {$l$};
+
+	%L^e annotation....    
+    \draw[line,<->] (0,-0.2) -- (1,-0.2);
+    \draw (0.5,-0.2) node[anchor=north] {$L^e$};
+    \draw[line,-] (0,-0.25) -- (0,-0.15);
+    \draw[line,-] (1,-0.25) -- (1,-0.15);
+
+\end{tikzpicture}

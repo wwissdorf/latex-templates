@@ -1,0 +1,74 @@
+%plot velocity variation
+
+\begin{tikzpicture}[scale=1]
+	\tikzstyle{line} = [line width=1.0pt, mark options=solid]
+	\tikzset{every mark/.append style={scale=1.8}}
+
+	\begin{axis}[
+        name=leftPlot,
+        ymin=0,ymax=1.0, 
+        xmin=0,xmax=20, 
+        xlabel=deflection voltage (\unit{V}),
+        ylabel=relative ion current (arbitrary units),
+        width=\doubleplotwidth,
+        height=\doubleplotheight,
+        legend style={
+            %area legend,
+            at={(1,-0.19)},
+            anchor=north,
+            legend columns=2,
+            cells={anchor=west}
+            }
+        ]
+
+
+    \addplot[cl1_dark,mark=o,line]        table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_001.csv}; 
+    \addplot[cl1_dark,mark=triangle,line] table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_002.csv}; 
+    \addplot[cl1_dark,mark=star,line]     table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_003.csv}; 
+    \addplot[cl1_dark,mark=diamond,line]  table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_004.csv}; 
+    \addplot[cl2_dark,mark=square*,line]  table[col sep=comma,x index=0,y index=2] {data/experimental/ww_2012_12_13_02.xls_analyzed.csv}; 
+    \addplot[cl2_dark,mark=*,line]        table[col sep=comma,x index=0,y index=2] {data/experimental/ww_2012_12_13_03.xls_analyzed.csv}; 
+
+
+    %\addplot[cl2_dark,mark=asterisk,line] table[col sep=comma,x index=0,y index=1] {data/deflectVari_negCorona-posDeflect_1-1SLM.csv};
+    \legend{
+        {simulation, \unit[0.45]{m/s}},
+        {simulation, \unit[0.65]{m/s}},
+        {simulation, \unit[0.85]{m/s}},
+        {simulation, \unit[1.25]{m/s}},
+        {measurement, \unit[0.35]{m/s}},
+        {measurement, \unit[0.45]{m/s}},
+    };
+
+
+    \end{axis};
+
+    \begin{axis}[
+        ymin=0,ymax=1.0, 
+        xlabel=deflection voltage (\unit{V}),
+        %ylabel=relative ion current (arbitrary units),
+        yticklabels={,,}, %hide y ticks 
+        width=\doubleplotwidth,
+        height=\doubleplotheight,
+        at={(\doubleplotwidth*0.8,0)}, anchor=left of south west,
+        legend style={
+            %area legend,
+            at={(1,-0.19)},
+            anchor=north,
+            legend columns=2,
+            cells={anchor=west}
+            }
+        ]
+
+    \addplot[cl1_dark,mark=o,line]        table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_001.csv}; 
+    \addplot[cl1_dark,mark=triangle,line]    table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_002.csv}; 
+    \addplot[cl1_dark,mark=star,line]      table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_003.csv}; 
+    \addplot[cl1_dark,mark=diamond,line]  table[col sep=comma,x index=0,y index=2] {data/simion/sim2012_12_02_004.csv}; 
+    \addplot[cl2_dark,mark=square*,line]    table[col sep=comma,x index=0,y index=2] {data/experimental/ww_2012_12_13_02.xls_analyzed.csv}; 
+    \addplot[cl2_dark,mark=*,line]      table[col sep=comma,x index=0,y index=2] {data/experimental/ww_2012_12_13_03.xls_analyzed.csv}; 
+
+    %\addplot[cl2_dark,mark=asterisk,line] table[col sep=comma,x index=0,y index=1] {data/deflectVari_negCorona-posDeflect_1-1SLM.csv};
+        
+    \end{axis};
+
+\end{tikzpicture}
